@@ -21,12 +21,23 @@ let scene = new ScrollMagic.Scene({
   triggerElement: intro,
   triggerHook: 0,
 })
-  .addIndicators()
+  // .addIndicators()
   .setPin(intro)
-  .addTo(controller) // add a scene to a ScrollMagic Controller
+  .addTo(controller); // add a scene to a ScrollMagic Controller
+
+// TEXT ANIMATION
+/* const textAnim = TweenMax.fromTo(text, 5, { opacity: 1 }, { opacity: 0 });
+
+let scene2 = new ScrollMagic.scene({
+  duration: 5000,
+  triggerElement: intro,
+  triggerHook: 0,
+})
+  .setTween(textAnim)
+  .addTo(controller); */
 
 // VIDEO ANIMATION
-let accelAmount = 0.1;
+let accelAmount = 1; //0.1 or 0.5 or 1
 let scrollPos = 0;
 let delay = 0;
 
@@ -36,5 +47,8 @@ scene.on('update', e => {
 
 setInterval(() => {
   delay += (scrollPos - delay) * accelAmount;
+  // console.log(scrollPos, delay);
+
+  video.preload = "auto";
   video.currentTime = delay;
 }, 41.6)
